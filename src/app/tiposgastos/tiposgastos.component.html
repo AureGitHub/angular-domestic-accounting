@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <h2 class="text-muted">Lista <small>de gastos</small></h2>
+   
+   
+    <div class="row">
+        <div class="col-md-12">
+            <kendo-grid [data]="gridView" 
+             [pageSize]="pageSize"
+                                    [skip]="skip"
+                                    [pageable]="{
+                                                    buttonCount: buttonCount,
+                                                    info: info,
+                                                    type: type,
+                                                    previousNext: previousNext
+                                                  }"
+                                    [scrollable]="'none'"
+                                    [height]="260"
+                                    [rowHeight]="36"
+                                    (pageChange)="pageChange($event)"
+                                    >
+                <kendo-grid-column field="ProductID" title="ID" width="40">
+                </kendo-grid-column>
+                <kendo-grid-column field="ProductName" title="Name" width="250">
+                </kendo-grid-column>
+                <kendo-grid-column field="Category.CategoryName" title="Category">
+                </kendo-grid-column>
+                <kendo-grid-column field="UnitPrice" title="Price" width="80">
+                </kendo-grid-column>
+                <kendo-grid-column field="UnitsInStock" title="In stock" width="80">
+                </kendo-grid-column>
+                <kendo-grid-column field="Discontinued" title="Discontinued" width="120">
+                    <template kendoGridCellTemplate let-dataItem>
+                        <input type="checkbox" [checked]="dataItem.Discontinued" disabled/>
+                    </template>
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>    
+ 
+
+ 
+
+
+</div>
