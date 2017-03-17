@@ -1,0 +1,33 @@
+<div *ngIf="this.authService.isLoggedIn" class="login-page">
+    YA está conectado
+</div>
+
+<div *ngIf="!this.authService.isLoggedIn" class="login-page">
+	<div class="row">
+	<button (click)="comoAdmin()" >como admin</button>
+	<button (click)="comoNoAdmin()" >como No admin</button>
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4">
+        	<img src="assets/img/SB-admin.png" width="150px" class="user-avatar" />
+			<h1>Euromillones DTTEC</h1>
+			<form role="form" (ngSubmit)="onSubmit()">
+				<div class="form-content">
+					<div class="form-group">
+						<input type="text" [(ngModel)]="model.username" name="username"  class="form-control input-underline input-lg" id="" placeholder="Nombre Usuario" required>
+					</div>
+
+					<div class="form-group">
+						<input type="password" [(ngModel)]="model.password" name="password" class="form-control input-underline input-lg" id="" placeholder="Password" required>
+					</div>
+				</div>
+			 <button *ngIf="VerBoton" type="submit" class="btn rounded-btn">Login</button>	
+       
+        <div *ngIf="!VerBoton">Accediendo al servidor...</div>
+				&nbsp;
+				<!--<a type="submit" class="btn rounded-btn" routerLink="/signup">Register</a>-->
+			</form>
+      <div>{{errorMessage}}</div>
+		</div>	
+	</div>
+</div>
