@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { products } from '../_models/products';
 import {
 	GridDataResult,
@@ -10,7 +10,7 @@ import {
   templateUrl: './tiposgastos.component.html',
   styleUrls: ['./tiposgastos.component.css']
 })
-export class TiposgastosComponent implements OnInit {
+export class TiposgastosComponent  {
 
   private gridView: GridDataResult;
 	private pageSize: number = 10;
@@ -30,9 +30,11 @@ protected pageChange(event: PageChangeEvent): void {
 		};
 	}
 
-  constructor() { }
+  constructor() { 
+		this.loadProducts();
 
-  ngOnInit() {
-  }
+	}
+
+ 
 
 }
