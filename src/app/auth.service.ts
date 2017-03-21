@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +8,8 @@ import 'rxjs/add/operator/catch';
 
 
 import { User } from './_models/user';
+
+import { API_CONFIG } from './_config/config';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +30,8 @@ private Url = 'https://euromillones-angular-node-auregithub.c9users.io/login';
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-constructor(private http: Http) {
+constructor(@Inject(API_CONFIG) private apiConfig: any,private http: Http) {
+  console.log(this.apiConfig);
  }
 
 SetEntornoUser(){

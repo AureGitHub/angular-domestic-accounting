@@ -11,7 +11,9 @@ import { CanDeactivateGuard }       from './_guard/can-deactivate-guard.service'
 import { AuthGuard }                from './_guard/auth-guard.service';
 import { AppComponent } from './app.component';
 import { LoginModule} from './login/login.module';
-import { TiposgastosModule } from './tiposgastos/tiposgastos.module'
+import { TiposgastosModule } from './tiposgastos/tiposgastos.module';
+
+import { API_CONFIG,value } from './_config/config';
 
 
 
@@ -30,7 +32,7 @@ import { TiposgastosModule } from './tiposgastos/tiposgastos.module'
     HttpModule,
      RouterModule.forRoot(routes),
   ],
-  providers: [AuthService, AuthGuard, CanDeactivateGuard ],
+  providers: [AuthService, AuthGuard, CanDeactivateGuard,{ provide: API_CONFIG, useValue: value } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
