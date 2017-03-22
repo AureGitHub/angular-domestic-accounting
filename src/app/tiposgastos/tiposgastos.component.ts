@@ -1,40 +1,60 @@
 import { Component } from '@angular/core';
-import { products } from '../_models/products';
+
 import {
 	GridDataResult,
 	PageChangeEvent
 } from '@progress/kendo-angular-grid';
 
+import { Observable } from 'rxjs';
+import { TiposGastosService } from '../_service/tiposgastos.service';
+
+
 @Component({
-  selector: 'app-tiposgastos',
-  templateUrl: './tiposgastos.component.html',
-  styleUrls: ['./tiposgastos.component.css']
+	selector: 'app-tiposgastos',
+	templateUrl: './tiposgastos.component.html',
+	styleUrls: ['./tiposgastos.component.css']
 })
-export class TiposgastosComponent  {
+export class TiposgastosComponent {
 
-  private gridView: GridDataResult;
-	private pageSize: number = 10;
+
+	TiposGastos: Observable<any[]>
+
+	constructor(private tiposGastosService: TiposGastosService) {
+		this.loadProducts();
+
+	}
+
+	private gridView: GridDataResult;
+	private pageSize: number = 5;
 	private skip: number = 0;
-	private gridData: any[] = products;
+	private gridData = null;
 
 
-protected pageChange(event: PageChangeEvent): void {
-		this.skip = event.skip;
+	protected pageChange(event: PageChangeEvent): void {
+		console.log(event);
+		this.skip = event.skip;	
 		this.loadProducts();
 
 	}
 	private loadProducts(): void {
-		this.gridView = {
-			data: this.gridData.slice(this.skip, this.skip + this.pageSize),
-			total: this.gridData.length
-		};
+
+		this.tiposGastosService.get().subscribe(result => {
+			this.gridData = result;
+
+			this.gridView = {
+				data: this.gridData.slice(this.skip, this.skip + this.pageSize),
+				total: this.gridData.length
+			};
+
+		});
+
+
+
+
 	}
 
-  constructor() { 
-		this.loadProducts();
 
-	}
 
- 
+
 
 }
