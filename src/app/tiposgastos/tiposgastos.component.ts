@@ -22,7 +22,7 @@ export class TiposgastosComponent {
 	public view: Observable<GridDataResult>;
 	public state: State = {
 		skip: 0,
-		take: 5
+		take: 10
 	};
 
 
@@ -38,6 +38,11 @@ export class TiposgastosComponent {
 	 public dataStateChange(state: DataStateChangeEvent): void {
         this.state = state;
         this.service.query(state);
+    }
+
+	 protected removeHandler({dataItem}) {
+        this.service.remove(dataItem);		 
+        this.service.query( this.state);
     }
 
 

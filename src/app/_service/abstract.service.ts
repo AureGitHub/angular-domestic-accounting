@@ -7,9 +7,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/operator/map';
 
+const REMOVE_ACTION = 'destroy';
 
-export abstract class AbstractService extends BehaviorSubject<GridDataResult> {
+export abstract class AbstractService extends BehaviorSubject<any> {
     private BASE_URL: string = 'http://localhost:3000/';
+
+    
 
     constructor(private http: Http, private tableName: string) {
         super(null);
@@ -24,15 +27,29 @@ export abstract class AbstractService extends BehaviorSubject<GridDataResult> {
         return filter ? `&$filter=${filter}` : '';
     }
 
+     public remove(data: any) {
+        let url = `${this.BASE_URL}tipogasto/deleteN/${data._id}`;
+        return this.http.get(url).map(res => res.json() || []);
+
+        // this.fetch(REMOVE_ACTION, data)
+        //     .subscribe(() => this.read(), () => this.read());
+    }
+
+
+
     private fetch(tableName: string, state: any): Observable<GridDataResult> {
         const queryStr = `${toODataString(state)}&$count=true${this.filterToString(state)}`;
 
         return this.http
             .get(`${this.BASE_URL}${tableName}?${queryStr}`)
             .map(response => response.json())
-            .map(response => (<GridDataResult>{
-                data: response.value, 
-                total: 10//parseInt(response["@odata.count"], 10)
-            }));
+            .map(response => 
+            {
+                return (<GridDataResult>{
+                    data: response.value, 
+                    total: response.total
+                });
+            }
+            );
     }
 }

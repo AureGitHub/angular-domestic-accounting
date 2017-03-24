@@ -1,31 +1,29 @@
 <div class="container-fluid">
 
-<tipogasto-form></tipogasto-form> 
+    <tipogasto-form></tipogasto-form>
 
     <h2 class="text-muted">Lista <small>de gastos</small></h2>
-   
-   
+
+
     <div class="row">
         <div class="col-md-12">
-            <kendo-grid 
-            [data]="view | async" 
-            [pageSize]="state.take"
-            [skip]="state.skip"
-            [sort]="state.sort"
-            [pageable]="true"
-            [scrollable]="'none'"
-            (dataStateChange)="dataStateChange($event)"            
-            >
-                <kendo-grid-column field="id" title="ID" width="40">
+            <kendo-grid [data]="view | async" [pageSize]="state.take" [skip]="state.skip" [pageable]="true" [scrollable]="'none'" (dataStateChange)="dataStateChange($event)"
+                (remove)="removeHandler($event)">
+                <kendo-grid-column field="_id" title="ID" width="40">
                 </kendo-grid-column>
                 <kendo-grid-column field="descripcion" title="Descripcion" width="250">
                 </kendo-grid-column>
+                <kendo-grid-command-column title="" width="220">
+                    <template let-isNew="isNew">                        
+                        <button type="button" class="btn btn-danger" kendoGridRemoveCommand>Eliminar</button>                        
+                    </template>
+                </kendo-grid-command-column>
             </kendo-grid>
         </div>
-    </div>    
- 
+    </div>
 
- 
+
+
 
 
 </div>
