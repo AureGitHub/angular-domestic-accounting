@@ -1,4 +1,4 @@
-export class User { 
-    constructor(public id: string, public descripcion: string){}
-   
+export class TipoGasto {
+    public _id: string = "";
+    public descripcion: string = "";
 }

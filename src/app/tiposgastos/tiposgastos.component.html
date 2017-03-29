@@ -2,12 +2,16 @@
 
     <tipogasto-form></tipogasto-form>
 
-    <h2 class="text-muted">Lista <small>de gastos</small></h2>
+    <h2 class="text-muted">Lista <small>de gastos</small></h2> 
 
 
     <div class="row">
         <div class="col-md-12">
-            <kendo-grid [data]="view | async" [pageSize]="state.take" [skip]="state.skip" [pageable]="true" [scrollable]="'none'" (dataStateChange)="dataStateChange($event)"
+            <kendo-grid [data]="view | async" 
+            [pageSize]="state.take" 
+            [skip]="state.skip" 
+            [pageable]="true" 
+            [scrollable]="'none'" (dataStateChange)="dataStateChange($event)"
                 (remove)="removeHandler($event)">
                 <kendo-grid-column field="_id" title="ID" width="40">
                 </kendo-grid-column>

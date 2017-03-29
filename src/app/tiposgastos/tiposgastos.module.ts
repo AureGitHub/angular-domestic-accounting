@@ -8,14 +8,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TiposgastosComponent }     from './tiposgastos.component';
 import { TipoGastoFormComponent }     from './tipogasto-form/tipogasto-form.component';
 
- import { TiposGastosService }      from '../_service/tiposgastos.service';
- import { TiposGastosNewService }      from '../_service/tiposgastos.service.new';
+import { Jsonp, JsonpModule } from '@angular/http';
+
+ 
+ import { TiposGastosNewService }      from '../_service/tiposgastos.service.new'; 
 
 @NgModule({
   imports: [
+     JsonpModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,  
     BrowserModule,
     GridModule
     
@@ -25,6 +28,6 @@ import { TipoGastoFormComponent }     from './tipogasto-form/tipogasto-form.comp
     TipoGastoFormComponent
   ],
   exports: [TiposgastosComponent]  ,
-   providers: [TiposGastosService,TiposGastosNewService]
+   providers: [TiposGastosNewService]
 })
 export class TiposgastosModule {}
