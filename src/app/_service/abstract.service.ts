@@ -27,13 +27,39 @@ export abstract class AbstractService extends BehaviorSubject<any> {
         return filter ? `&$filter=${filter}` : '';
     }
 
-     public remove(data: any) {
+     public remove(data: any,state: any) {
         let url = `${this.BASE_URL}tipogasto/deleteN/${data._id}`;
-        return this.http.get(url).map(res => res.json() || []);
+        return this.http.get(url)
+        .map(res => res.json() || [])
+        .subscribe(
+            res => 
+            {
+                this.query(state)
+            }
+            );
+      
 
         // this.fetch(REMOVE_ACTION, data)
         //     .subscribe(() => this.read(), () => this.read());
     }
+
+     public Add(data: any,state: any) {
+        let url = `${this.BASE_URL}tipogasto/createN/`;
+        return this.http.post(url,data)
+        .map(res => res.json() || [])
+        .subscribe(
+            res => 
+            {
+                this.query(state)
+            }
+            );
+      
+
+        // this.fetch(REMOVE_ACTION, data)
+        //     .subscribe(() => this.read(), () => this.read());
+    }
+
+    
 
 
 

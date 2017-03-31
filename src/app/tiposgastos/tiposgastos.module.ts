@@ -10,7 +10,7 @@ import { TipoGastoFormComponent }     from './tipogasto-form/tipogasto-form.comp
 
 import { Jsonp, JsonpModule } from '@angular/http';
 
- 
+ import { DialogModule } from '@progress/kendo-angular-dialog';
  import { TiposGastosNewService }      from '../_service/tiposgastos.service.new'; 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { Jsonp, JsonpModule } from '@angular/http';
     FormsModule,
     ReactiveFormsModule,  
     BrowserModule,
-    GridModule
+    GridModule,
+    DialogModule
     
   ],
   declarations: [

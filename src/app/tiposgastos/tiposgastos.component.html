@@ -1,12 +1,25 @@
 <div class="container-fluid">
 
-    <tipogasto-form></tipogasto-form>
+    <tipogasto-form *ngIf="verFormTipoGasto" (onSubmit)="onSubmit($event)"></tipogasto-form>
 
+    <button (click)="AnadirTipoGasto()"  type="button" class="btn btn-primary">{{strBotonAnadir}}</button>
+    
     <h2 class="text-muted">Lista <small>de gastos</small></h2> 
 
 
     <div class="row">
         <div class="col-md-12">
+
+<kendo-dialog title="Confirmación Borrado" *ngIf="opened" (close)="close('cancel')">
+            <p style="margin: 30px; text-align: center;">Se va a borrar. ¿Continuar?</p>
+            <kendo-dialog-actions>
+                <button kendoButton (click)="close()">No</button>
+                <button kendoButton (click)="BorrarItem()" primary="true">Sí</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>
+
+
+
             <kendo-grid [data]="view | async" 
             [pageSize]="state.take" 
             [skip]="state.skip" 
