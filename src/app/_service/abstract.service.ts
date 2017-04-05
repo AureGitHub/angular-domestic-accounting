@@ -18,9 +18,19 @@ export abstract class AbstractService extends BehaviorSubject<any> {
         super(null);
     }
 
-    public query(state: any): void {
+    public read(state: any): Observable<GridDataResult>{
+          return this.fetch(this.tableName, state);
+    }
+
+    public query(state: any ): void {
         this.fetch(this.tableName, state)
-            .subscribe(x => super.next(x));
+            .subscribe(x => {              
+                return super.next(x)});
+    }
+
+     public queryFull(state: any ): Observable<GridDataResult> {
+        return this.fetch(this.tableName, state);
+            
     }
 
     private filterToString({ filter }: { filter?: string }): string {
@@ -103,4 +113,7 @@ export abstract class AbstractService extends BehaviorSubject<any> {
             }
             );
     }
+
+
+    
 }

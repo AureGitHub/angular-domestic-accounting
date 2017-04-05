@@ -5,12 +5,12 @@ import {AbstractService} from './abstract.service'
 export class TiposGastosNewService extends AbstractService {
     constructor(http: Http) { super(http, "tipogasto/get"); }
 
-    public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {
-        this.query(Object.assign({}, state, { "filter": `CategoryID eq ${CategoryID}` }));
-    }
+    // public queryForCategory({ CategoryID }: { CategoryID: number }, state?: any): void {
+    //     this.query(Object.assign({}, state, { "filter": `CategoryID eq ${CategoryID}` }));
+    // }
 
-    public queryForProductName(ProductName: string, state?: any): void {
-        this.query(Object.assign({}, state, { "filter": `contains(ProductName, '${ProductName}')` }));
-    }
+    // public queryForProductName(ProductName: string, state?: any): void {
+    //     this.query(Object.assign({}, state, { "filter": `contains(ProductName, '${ProductName}')` }));
+    // }
 
 }
