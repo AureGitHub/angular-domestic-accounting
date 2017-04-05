@@ -59,6 +59,31 @@ export abstract class AbstractService extends BehaviorSubject<any> {
         //     .subscribe(() => this.read(), () => this.read());
     }
 
+
+ public Save(data: any,state: any, isNew?: boolean) {
+        let url = "";
+        if(isNew){
+            url = `${this.BASE_URL}tipogasto/createN/`;
+        }
+        else{
+            url = `${this.BASE_URL}tipogasto/updateN/`;
+        }
+        
+        return this.http.post(url,data)
+        .map(res => res.json() || [])
+        .subscribe(
+            res => 
+            {
+                this.query(state)
+            }
+            );
+      
+
+        // this.fetch(REMOVE_ACTION, data)
+        //     .subscribe(() => this.read(), () => this.read());
+    }
+
+
     
 
 

@@ -5,8 +5,14 @@ import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { TiposgastosComponent }     from './tiposgastos.component';
-import { TipoGastoFormComponent }     from './tipogasto-form/tipogasto-form.component';
+// import { TiposgastosComponent }     from './tiposgastos.component';
+// import { TipoGastoFormComponent }     from './tipogasto-form/tipogasto-form.component';
+
+import { LstTiposGastos }     from './lst.tipos.gastos';
+import { GridEditFormComponent }     from './edit-form.component';
+
+
+
 
 import { Jsonp, JsonpModule } from '@angular/http';
 
@@ -25,10 +31,10 @@ import { Jsonp, JsonpModule } from '@angular/http';
     
   ],
   declarations: [
-    TiposgastosComponent,
-    TipoGastoFormComponent
+    LstTiposGastos,
+    GridEditFormComponent
   ],
-  exports: [TiposgastosComponent]  ,
+  exports: [LstTiposGastos]  ,
    providers: [TiposGastosNewService]
 })
 export class TiposgastosModule {}

@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 import { AuthGuard }            from '../_guard/auth-guard.service';
 import { AuthService }          from '../auth.service';
-import { TiposgastosComponent }       from './tiposgastos.component';
+import { LstTiposGastos }       from './lst.tipos.gastos';
 
 export const TiposGestosRoutes: Route[] = [  
-	{ path: 'tiposgastos',component: TiposgastosComponent }
+	{ path: 'tiposgastos',component: LstTiposGastos }
 ]; 
  
 

@@ -1,4 +1,4 @@
 export class TipoGasto {
-    public _id: string = "";
+    public _id: string = null;
     public descripcion: string = "";
 }
