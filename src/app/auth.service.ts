@@ -17,7 +17,7 @@ export class AuthService {
 public token: string;
 //private Url = 'http://localhost:51098/login';
 //private Url = 'https://euromillones-angular-node-auregithub.c9users.io/login';
-private Url = '';
+private Url = 'http://localhost:3000/loginN';
 
  private localStorage_currentUser = 'currentUser';
  
@@ -33,7 +33,8 @@ private Url = '';
 
 constructor(@Inject(API_CONFIG) private apiConfig: any,private http: Http) {
   console.log(this.apiConfig);
-  this.Url = apiConfig.url + apiConfig.pathLogin
+  this.Url = apiConfig.url + apiConfig.pathLogin;
+  alert(this.Url);
  }
 
 SetEntornoUser(){
@@ -58,7 +59,7 @@ SetEntornoUser(){
 
 
     return this.http
-               .post(this.Url,JSON.stringify({username:username,password : password}),options)
+               .post(this.Url,JSON.stringify({email:username,password : password}),options)
                 .map((response: Response) => {
                    console.log(response);
                    let token = response.json() && response.json().Security  &&  response.json().Security.token;
