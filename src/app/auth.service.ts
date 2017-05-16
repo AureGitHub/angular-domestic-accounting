@@ -34,7 +34,7 @@ private Url = 'http://localhost:3000/loginN';
 constructor(@Inject(API_CONFIG) private apiConfig: any,private http: Http) {
   console.log(this.apiConfig);
   this.Url = apiConfig.url + apiConfig.pathLogin;
-  alert(this.Url);
+  
  }
 
 SetEntornoUser(){
@@ -61,7 +61,7 @@ SetEntornoUser(){
     return this.http
                .post(this.Url,JSON.stringify({email:username,password : password}),options)
                 .map((response: Response) => {
-                   console.log(response);
+                   
                    let token = response.json() && response.json().Security  &&  response.json().Security.token;
                 if (token) {
                     // set token property
@@ -76,6 +76,8 @@ SetEntornoUser(){
                       response.json().Security.expires,
                       response.json().Security.token
                     );
+
+                    console.log('currentUser: ' + response.json().Security);
  
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(this.userConnect));
